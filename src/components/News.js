@@ -30,7 +30,7 @@ const News = (props)=>{
     }
 
     useEffect(() => {
-        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
+        document.title = `${capitalizeFirstLetter(props.category)} - NewsVerse`;
         updateNews(); 
         // eslint-disable-next-line
     }, [])
@@ -42,15 +42,18 @@ const News = (props)=>{
         let data = await fetch(url);
         let parsedData = await data.json()
         setArticles(articles.concat(parsedData.articles))
+         console.log(articles.length)
         setTotalResults(parsedData.totalResults)
       };
+
  
         return (
-            <>
-                <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <div>
+                <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsVerse - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
                 {loading && <Spinner />}
                 <InfiniteScroll
                     dataLength={articles.length}
+                   
                     next={fetchMoreData}
                     hasMore={articles.length !== totalResults}
                     loader={<Spinner/>}
@@ -66,7 +69,7 @@ const News = (props)=>{
                     </div>
                     </div> 
                 </InfiniteScroll>
-            </>
+           </div>
         )
     
 }
