@@ -28,11 +28,10 @@ const News = (props)=>{
         props.setProgress(100);
     }
     
-    useEffect(() => {
+    useEffect(async () => {
         document.title = `${capitalizeFirstLetter(props.category)} - NewsVerse`;
-        updateNews().then(()=>{
-            setLoading(false)
-        })
+        await updateNews();
+        setLoading(false);
         // eslint-disable-next-line
     }, [])
 
