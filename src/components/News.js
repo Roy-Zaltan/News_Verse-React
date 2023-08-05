@@ -22,6 +22,7 @@ const News = (props)=>{
         let data = await fetch(url);
         props.setProgress(30);
         let parsedData = await data.json()
+        console.log(parsedData)
         props.setProgress(70);
         setArticles(parsedData.articles)
         setTotalResults(parsedData.totalResults)
@@ -49,6 +50,8 @@ const News = (props)=>{
  
         return (
             <div>
+                {console.log(articles)}
+                
                 <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsVerse - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
                 {loading && <Spinner />}
                 <InfiniteScroll
