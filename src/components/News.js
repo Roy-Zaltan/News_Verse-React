@@ -25,13 +25,14 @@ const News = (props)=>{
         props.setProgress(70);
         setArticles(parsedData.articles)
         setTotalResults(parsedData.totalResults)
-        setLoading(false)
         props.setProgress(100);
     }
-
+    
     useEffect(() => {
         document.title = `${capitalizeFirstLetter(props.category)} - NewsVerse`;
-        updateNews(); 
+        updateNews().then(()=>{
+            setLoading(false)
+        })
         // eslint-disable-next-line
     }, [])
 
